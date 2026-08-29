@@ -22,7 +22,7 @@
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="index.html" aria-label="SA Sistemas FV — início">
-          <img src="assets/logo-escuro.svg" alt="SA Sistemas Fotovoltaicos" />
+          <img src="assets/logo-claro.svg" alt="SA Sistemas Fotovoltaicos" />
         </a>
         <nav class="main-nav" aria-label="Navegação principal">
           <a href="index.html" aria-current="page">Início</a>
@@ -30,28 +30,32 @@
           <a href="servicos.html">Serviços</a>
           <a href="projetos.html">Projetos</a>
           <a href="contato.html">Contato</a>
-          <a class="button button-sun header-cta" href="contato.html">Simular economia →</a>
+          <a class="button button-primary header-cta" href="contato.html">
+            Simular economia <span data-icon="arrow-right"></span>
+          </a>
         </nav>
         <button
           class="menu-toggle"
           type="button"
           aria-label="Abrir menu"
           aria-expanded="false"
-        >☰</button>
+        ><span data-menu-icon data-icon="menu"></span></button>
       </div>
     </header>
 
     <main>
       <section class="hero">
         <div class="container hero-content">
-          <span class="eyebrow hero-badge">☀ Integradora fotovoltaica</span>
+          <span class="eyebrow hero-badge"><span data-icon="sun"></span> Integradora fotovoltaica</span>
           <h1>Gere sua própria energia e liberte seu orçamento da conta de luz</h1>
           <p class="hero-copy">
             Do estudo de viabilidade à homologação: entregamos sistemas solares
             completos para residências, comércios, indústrias e propriedades rurais.
           </p>
           <div class="hero-actions">
-            <a class="button button-sun" href="contato.html">Simular minha economia →</a>
+            <a class="button button-sun" href="contato.html">
+              Simular minha economia <span data-icon="arrow-right"></span>
+            </a>
             <a class="button button-outline" href="projetos.html">Ver projetos realizados</a>
           </div>
           <div class="stats" aria-label="Indicadores da empresa">
@@ -66,17 +70,17 @@
       <section class="section">
         <div class="container benefit-grid">
           <article class="card">
-            <span class="icon-box">☀</span>
+            <span class="icon-box" data-icon="sun"></span>
             <h3>Até 95% de economia</h3>
             <p>Sua conta de luz reduzida à taxa mínima.</p>
           </article>
           <article class="card">
-            <span class="icon-box">✓</span>
+            <span class="icon-box" data-icon="shield-check"></span>
             <h3>25 anos de garantia</h3>
             <p>Módulos com garantia de performance.</p>
           </article>
           <article class="card">
-            <span class="icon-box">↗</span>
+            <span class="icon-box" data-icon="trending-up"></span>
             <h3>Valorização do imóvel</h3>
             <p>Imóveis com geração própria valem mais.</p>
           </article>
@@ -90,25 +94,25 @@
           <ol class="steps">
             <li class="step">
               <span class="step-number">01</span>
-              <span class="step-icon">⌕</span>
+              <span class="step-icon" data-icon="search"></span>
               <h3>Diagnóstico e projeto</h3>
               <p>Analisamos sua conta e o local para dimensionar o sistema ideal.</p>
             </li>
             <li class="step">
               <span class="step-number">02</span>
-              <span class="step-icon">⚙</span>
+              <span class="step-icon" data-icon="wrench"></span>
               <h3>Instalação certificada</h3>
               <p>Equipe própria, equipamentos Tier 1 e execução conforme as normas.</p>
             </li>
             <li class="step">
               <span class="step-number">03</span>
-              <span class="step-icon">✓</span>
+              <span class="step-icon" data-icon="badge-check"></span>
               <h3>Homologação</h3>
               <p>Cuidamos da documentação junto à distribuidora e da troca do medidor.</p>
             </li>
             <li class="step">
               <span class="step-number">04</span>
-              <span class="step-icon">⌁</span>
+              <span class="step-icon" data-icon="activity"></span>
               <h3>Monitoramento</h3>
               <p>Acompanhamos a geração e a manutenção durante toda a vida útil.</p>
             </li>
@@ -124,8 +128,8 @@
               <h2>Projetos que já estão gerando energia</h2>
             </div>
             <div class="carousel-controls">
-              <button class="carousel-button" type="button" data-previous aria-label="Projeto anterior">←</button>
-              <button class="carousel-button" type="button" data-next aria-label="Próximo projeto">→</button>
+              <button class="carousel-button" type="button" data-previous aria-label="Projeto anterior"><span data-icon="chevron-left"></span></button>
+              <button class="carousel-button" type="button" data-next aria-label="Próximo projeto"><span data-icon="chevron-right"></span></button>
             </div>
           </div>
           <div class="carousel-viewport">
@@ -183,19 +187,19 @@
             <figure class="testimonial">
               <span class="testimonial-quote">“</span>
               <blockquote>Minha conta caiu de R$ 780 para a taxa mínima já no segundo mês. A equipe cuidou de tudo.</blockquote>
-              <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+              <div class="stars" data-rating="5" aria-label="5 de 5 estrelas"></div>
               <figcaption><strong>Marcelo Andrade</strong><small>Residência · Campinas/SP</small></figcaption>
             </figure>
             <figure class="testimonial">
               <span class="testimonial-quote">“</span>
               <blockquote>Projeto entregue no prazo e sem parar a operação da loja. O acompanhamento faz diferença.</blockquote>
-              <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+              <div class="stars" data-rating="5" aria-label="5 de 5 estrelas"></div>
               <figcaption><strong>Fernanda Ribeiro</strong><small>Padaria Trigo Nobre · Sorocaba/SP</small></figcaption>
             </figure>
             <figure class="testimonial">
               <span class="testimonial-quote">“</span>
               <blockquote>Dimensionaram o sistema pensando na irrigação. A energia deixou de ser meu maior custo fixo.</blockquote>
-              <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+              <div class="stars" data-rating="5" aria-label="5 de 5 estrelas"></div>
               <figcaption><strong>Cláudio Menezes</strong><small>Fazenda Boa Vista · Itapetininga/SP</small></figcaption>
             </figure>
           </div>
@@ -243,10 +247,10 @@
             Integradora de energia solar: engenharia, homologação e monitoramento contínuo.
           </p>
           <div class="social-links">
-            <a href="https://instagram.com/" aria-label="Instagram">IG</a>
-            <a href="https://facebook.com/" aria-label="Facebook">f</a>
-            <a href="https://linkedin.com/" aria-label="LinkedIn">in</a>
-            <a href="https://youtube.com/" aria-label="YouTube">YT</a>
+            <a href="https://instagram.com/" aria-label="Instagram"><span data-icon="instagram"></span></a>
+            <a href="https://facebook.com/" aria-label="Facebook"><span data-icon="facebook"></span></a>
+            <a href="https://linkedin.com/" aria-label="LinkedIn"><span data-icon="linkedin"></span></a>
+            <a href="https://youtube.com/" aria-label="YouTube"><span data-icon="youtube"></span></a>
           </div>
         </div>
         <nav class="footer-column" aria-label="Navegação do rodapé">
@@ -259,14 +263,13 @@
         </nav>
         <div class="footer-column">
           <h3>Contato</h3>
-          <a href="tel:+5511999990000">(11) 99999-0000</a>
-          <a href="mailto:contato@sasistemasfv.com.br">contato@sasistemasfv.com.br</a>
-          <span>Seg a Sex, 08h às 18h</span>
+          <a class="footer-contact" href="tel:+5511999990000"><span data-icon="phone"></span><span>(11) 99999-0000</span></a>
+          <a class="footer-contact" href="mailto:contato@sasistemasfv.com.br"><span data-icon="mail"></span><span>contato@sasistemasfv.com.br</span></a>
+          <span class="footer-contact"><span data-icon="clock"></span><span>Seg a Sex, 08h às 18h</span></span>
         </div>
         <div class="footer-column">
           <h3>Endereço</h3>
-          <span>Av. das Nações, 1200 — Sala 07</span>
-          <span>Centro, São Paulo — SP</span>
+          <span class="footer-address"><span data-icon="map-pin"></span><span>Av. das Nações, 1200 — Sala 07<br />Centro, São Paulo — SP</span></span>
         </div>
       </div>
       <div class="container footer-bottom">
