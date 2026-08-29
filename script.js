@@ -1,8 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
+  setupIcons();
+  setupRatings();
   setupMobileMenu();
   setupCarousels();
   updateYear();
 });
+
+const iconSprite = "assets/icons.svg";
+
+function createIcon(name) {
+  const namespace = "http://www.w3.org/2000/svg";
+  const icon = document.createElementNS(namespace, "svg");
+  const use = document.createElementNS(namespace, "use");
+
+  icon.classList.add("icon");
+  icon.setAttribute("aria-hidden", "true");
+  icon.setAttribute("focusable", "false");
+  use.setAttribute("href", `${iconSprite}#${name}`);
+  icon.appendChild(use);
+
+  return icon;
+}
+
+function renderIcon(element, name) {
+  element.dataset.icon = name;
+  element.replaceChildren(createIcon(name));
+}
+
+function setupIcons() {
+  document.querySelectorAll("[data-icon]").forEach((element) => {
+    renderIcon(element, element.dataset.icon);
+  });
+}
+
+function setupRatings() {
+  document.querySelectorAll("[data-rating]").forEach((rating) => {
+    const total = Number(rating.dataset.rating) || 5;
+    rating.replaceChildren(...Array.from({ length: total }, () => createIcon("star")));
+  });
+}
 
 function setupMobileMenu() {
   const button = document.querySelector(".menu-toggle");
@@ -13,7 +49,9 @@ function setupMobileMenu() {
   button.addEventListener("click", () => {
     const isOpen = menu.classList.toggle("open");
     button.setAttribute("aria-expanded", String(isOpen));
-    button.textContent = isOpen ? "×" : "☰";
+    button.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    const menuIcon = button.querySelector("[data-menu-icon]");
+    if (menuIcon) renderIcon(menuIcon, isOpen ? "x" : "menu");
     document.body.classList.toggle("menu-open", isOpen);
   });
 
@@ -21,9 +59,22 @@ function setupMobileMenu() {
     link.addEventListener("click", () => {
       menu.classList.remove("open");
       button.setAttribute("aria-expanded", "false");
-      button.textContent = "☰";
+      button.setAttribute("aria-label", "Abrir menu");
+      const menuIcon = button.querySelector("[data-menu-icon]");
+      if (menuIcon) renderIcon(menuIcon, "menu");
       document.body.classList.remove("menu-open");
     });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 980 && menu.classList.contains("open")) {
+      menu.classList.remove("open");
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-label", "Abrir menu");
+      const menuIcon = button.querySelector("[data-menu-icon]");
+      if (menuIcon) renderIcon(menuIcon, "menu");
+      document.body.classList.remove("menu-open");
+    }
   });
 }
 
