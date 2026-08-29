@@ -1,15 +1,6 @@
-/* ==========================================================
-   CONFIGURAÇÕES FÁCEIS
-   Preencha estes dois valores quando tiver os dados reais.
-   ========================================================== */
-const WHATSAPP_NUMBER = ""; // Exemplo: "5511999990000"
-const CRM_EMBED_URL = ""; // Cole a URL de incorporação do formulário do CRM
-
 document.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
   setupCarousels();
-  setupForms();
-  setupCrmEmbed();
   updateYear();
 });
 
@@ -83,81 +74,8 @@ function setupCarousels() {
   });
 }
 
-function setupForms() {
-  document.querySelectorAll(".crm-form").forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      if (!WHATSAPP_NUMBER) {
-        showToast(
-          "O formulário está pronto. Preencha WHATSAPP_NUMBER no arquivo script.js para ativar o envio.",
-        );
-        return;
-      }
-
-      const data = new FormData(form);
-      const message = [
-        "Novo pedido pelo site",
-        "",
-        "Nome: " + data.get("nome"),
-        "E-mail: " + data.get("email"),
-        "Telefone: " + data.get("telefone"),
-        "Conta de luz: " + data.get("conta"),
-        "Tipo: " + data.get("tipo"),
-        "Mensagem: " + (data.get("mensagem") || "Não informado"),
-      ].join("\n");
-
-      const url =
-        "https://wa.me/" +
-        WHATSAPP_NUMBER +
-        "?text=" +
-        encodeURIComponent(message);
-
-      window.open(url, "_blank", "noopener,noreferrer");
-      form.reset();
-      showToast("Pedido preparado. O WhatsApp foi aberto em uma nova janela.");
-    });
-  });
-}
-
-function setupCrmEmbed() {
-  if (!CRM_EMBED_URL) return;
-
-  document.querySelectorAll(".crm-slot").forEach((slot) => {
-    const iframe = document.createElement("iframe");
-    iframe.src = CRM_EMBED_URL;
-    iframe.title = "Formulário de contato";
-    iframe.loading = "lazy";
-    iframe.style.width = "100%";
-    iframe.style.height = "640px";
-    iframe.style.border = "0";
-    iframe.style.borderRadius = "20px";
-
-    slot.replaceChildren(iframe);
-  });
-}
-
 function updateYear() {
   document.querySelectorAll("[data-current-year]").forEach((element) => {
     element.textContent = String(new Date().getFullYear());
   });
-}
-
-function showToast(message) {
-  let toast = document.querySelector(".toast");
-
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.className = "toast";
-    toast.setAttribute("role", "status");
-    document.body.appendChild(toast);
-  }
-
-  toast.textContent = message;
-  toast.classList.add("show");
-
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => {
-    toast.classList.remove("show");
-  }, 5000);
 }

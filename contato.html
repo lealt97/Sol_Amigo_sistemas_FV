@@ -71,46 +71,19 @@
           </div>
 
           <div class="crm-slot">
-            <form class="crm-form">
-              <span class="eyebrow">Simulação gratuita</span>
-              <h2 style="margin-bottom: 4px">Conte sobre o seu projeto</h2>
-              <div class="form-field">
-                <label for="nome-contato">Nome completo</label>
-                <input id="nome-contato" name="nome" required placeholder="Seu nome" />
-              </div>
-              <div class="form-row">
-                <div class="form-field">
-                  <label for="email-contato">E-mail</label>
-                  <input id="email-contato" type="email" name="email" required placeholder="voce@email.com" />
-                </div>
-                <div class="form-field">
-                  <label for="telefone-contato">Telefone / WhatsApp</label>
-                  <input id="telefone-contato" name="telefone" required placeholder="(00) 00000-0000" />
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-field">
-                  <label for="conta-contato">Média da conta de luz</label>
-                  <select id="conta-contato" name="conta">
-                    <option>Até R$ 500</option><option>R$ 500 a R$ 1.500</option>
-                    <option>R$ 1.500 a R$ 5.000</option><option>Acima de R$ 5.000</option>
-                  </select>
-                </div>
-                <div class="form-field">
-                  <label for="tipo-contato">Tipo de instalação</label>
-                  <select id="tipo-contato" name="tipo">
-                    <option>Residencial</option><option>Comercial</option>
-                    <option>Industrial</option><option>Rural</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-field">
-                <label for="mensagem-contato">Mensagem</label>
-                <textarea id="mensagem-contato" name="mensagem" placeholder="Conte um pouco sobre o projeto"></textarea>
-              </div>
-              <button class="button button-primary" type="submit">Quero minha simulação gratuita</button>
-              <p class="form-note">Retorno em até 1 dia útil. Seus dados são tratados com confidencialidade.</p>
-            </form>
+            <div
+              id="sol-amigo-formulario"
+              class="sol-amigo-widget"
+              aria-label="Formulário de simulação de energia solar"
+            ></div>
+            <script
+              async
+              src="https://lealt97.github.io/sol-amigo-pro/widget.js"
+              data-sol-amigo-token="d5395e84-a46a-4745-9dc3-22c5dc764d38"
+              data-mode="inline"
+              data-target="#sol-amigo-formulario"
+            ></script>
+            <noscript>Ative o JavaScript para solicitar sua simulação de energia solar.</noscript>
           </div>
         </div>
       </section>
