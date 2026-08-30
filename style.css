@@ -80,10 +80,9 @@ a {
 }
 
 .icon {
-  display: block;
-  width: 1em;
-  height: 1em;
+  display: inline-block;
   flex: 0 0 auto;
+  line-height: 1;
 }
 
 [data-icon] {
@@ -385,35 +384,18 @@ a {
 }
 
 .icon-box {
-  position: relative;
   display: grid;
-  width: 58px;
-  height: 58px;
+  width: 54px;
+  height: 54px;
   place-items: center;
-  border: 1px solid rgba(0, 118, 221, 0.14);
-  border-radius: 18px;
-  background: linear-gradient(145deg, rgba(0, 118, 221, 0.12), rgba(180, 191, 138, 0.24));
+  border: 1px solid rgba(0, 118, 221, 0.12);
+  border-radius: 16px;
+  background: rgba(0, 118, 221, 0.07);
   color: var(--blue);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), 0 10px 24px rgba(14, 35, 55, 0.08);
-  font-size: 1.5rem;
-}
-
-.icon-box::after {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 7px;
-  height: 7px;
-  border: 2px solid var(--white);
-  border-radius: 50%;
-  background: var(--yellow);
-  box-shadow: 0 2px 6px rgba(14, 35, 55, 0.16);
-  content: "";
 }
 
 .icon-box .icon {
-  width: 28px;
-  height: 28px;
+  font-size: 28px;
 }
 
 .card h3 {
@@ -455,17 +437,14 @@ a {
   height: 46px;
   margin-top: 18px;
   place-items: center;
-  border: 1px solid rgba(0, 118, 221, 0.12);
+  border: 1px solid rgba(0, 118, 221, 0.1);
   border-radius: 14px;
-  background: linear-gradient(145deg, rgba(0, 118, 221, 0.1), rgba(180, 191, 138, 0.18));
+  background: rgba(0, 118, 221, 0.07);
   color: var(--blue);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  font-size: 1.4rem;
 }
 
 .step-icon .icon {
-  width: 25px;
-  height: 25px;
+  font-size: 25px;
 }
 
 .step h3 {
@@ -606,8 +585,7 @@ a {
 
 .carousel-button [data-icon],
 .carousel-button .icon {
-  width: 20px;
-  height: 20px;
+  font-size: 20px;
 }
 
 .carousel-button:hover {
@@ -762,8 +740,7 @@ a {
 }
 
 .stars .icon {
-  width: 15px;
-  height: 15px;
+  font-size: 15px;
 }
 
 .testimonial figcaption {
@@ -850,17 +827,14 @@ a {
   height: 48px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(0, 118, 221, 0.12);
+  border: 1px solid rgba(0, 118, 221, 0.1);
   border-radius: 15px;
-  background: linear-gradient(145deg, rgba(0, 118, 221, 0.1), rgba(180, 191, 138, 0.22));
+  background: rgba(0, 118, 221, 0.07);
   color: var(--blue);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 8px 20px rgba(14, 35, 55, 0.07);
-  font-size: 1.2rem;
 }
 
 .contact-icon .icon {
-  width: 23px;
-  height: 23px;
+  font-size: 23px;
 }
 
 .contact-item small,

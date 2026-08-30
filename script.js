@@ -6,18 +6,47 @@ document.addEventListener("DOMContentLoaded", () => {
   updateYear();
 });
 
-const iconSprite = "assets/icons.svg";
+const phosphorIconNames = {
+  "arrow-right": "arrow-right",
+  "chevron-left": "caret-left",
+  "chevron-right": "caret-right",
+  menu: "list",
+  x: "x",
+  sun: "sun",
+  "shield-check": "shield-check",
+  "trending-up": "trend-up",
+  search: "magnifying-glass",
+  wrench: "wrench",
+  "badge-check": "seal-check",
+  activity: "pulse",
+  target: "target",
+  heart: "heart",
+  leaf: "leaf",
+  home: "house-line",
+  building: "buildings",
+  factory: "factory",
+  sprout: "plant",
+  "clipboard-check": "clipboard-text",
+  battery: "battery-charging",
+  car: "car",
+  gauge: "gauge",
+  phone: "phone",
+  mail: "envelope-simple",
+  "map-pin": "map-pin",
+  clock: "clock",
+  instagram: "instagram-logo",
+  facebook: "facebook-logo",
+  linkedin: "linkedin-logo",
+  youtube: "youtube-logo",
+  star: "star",
+};
 
 function createIcon(name) {
-  const namespace = "http://www.w3.org/2000/svg";
-  const icon = document.createElementNS(namespace, "svg");
-  const use = document.createElementNS(namespace, "use");
+  const icon = document.createElement("i");
+  const phosphorName = phosphorIconNames[name] || name;
 
-  icon.classList.add("icon");
+  icon.className = `icon ph ph-${phosphorName}`;
   icon.setAttribute("aria-hidden", "true");
-  icon.setAttribute("focusable", "false");
-  use.setAttribute("href", `${iconSprite}#${name}`);
-  icon.appendChild(use);
 
   return icon;
 }
