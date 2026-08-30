@@ -385,19 +385,35 @@ a {
 }
 
 .icon-box {
+  position: relative;
   display: grid;
-  width: 52px;
-  height: 52px;
+  width: 58px;
+  height: 58px;
   place-items: center;
-  border-radius: 15px;
-  background: rgba(180, 191, 138, 0.27);
-  color: var(--navy);
-  font-size: 1.35rem;
+  border: 1px solid rgba(0, 118, 221, 0.14);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(0, 118, 221, 0.12), rgba(180, 191, 138, 0.24));
+  color: var(--blue);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), 0 10px 24px rgba(14, 35, 55, 0.08);
+  font-size: 1.5rem;
+}
+
+.icon-box::after {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 7px;
+  height: 7px;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 2px 6px rgba(14, 35, 55, 0.16);
+  content: "";
 }
 
 .icon-box .icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 .card h3 {
@@ -435,15 +451,21 @@ a {
 
 .step-icon {
   display: inline-grid;
+  width: 46px;
+  height: 46px;
   margin-top: 18px;
   place-items: center;
+  border: 1px solid rgba(0, 118, 221, 0.12);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(0, 118, 221, 0.1), rgba(180, 191, 138, 0.18));
   color: var(--blue);
-  font-size: 1.35rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  font-size: 1.4rem;
 }
 
 .step-icon .icon {
-  width: 24px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
 }
 
 .step h3 {
@@ -824,19 +846,21 @@ a {
 
 .contact-icon {
   display: grid;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   flex: 0 0 auto;
   place-items: center;
-  border-radius: 13px;
-  background: rgba(180, 191, 138, 0.26);
-  color: var(--navy);
+  border: 1px solid rgba(0, 118, 221, 0.12);
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(0, 118, 221, 0.1), rgba(180, 191, 138, 0.22));
+  color: var(--blue);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 8px 20px rgba(14, 35, 55, 0.07);
   font-size: 1.2rem;
 }
 
 .contact-icon .icon {
-  width: 21px;
-  height: 21px;
+  width: 23px;
+  height: 23px;
 }
 
 .contact-item small,
@@ -962,7 +986,7 @@ a {
   height: 42px;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 50%;
+  border-radius: 13px;
   background: rgba(255, 255, 255, 0.035);
   color: rgba(255, 255, 255, 0.78);
   font-size: 1.08rem;
