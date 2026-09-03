@@ -237,7 +237,7 @@ a {
   margin-left: auto;
 }
 
-.main-nav > a:not(.button) {
+.main-nav>a:not(.button) {
   position: relative;
   border-radius: 9px;
   padding: 11px 12px;
@@ -247,8 +247,8 @@ a {
   transition: color 180ms ease, background 180ms ease;
 }
 
-.main-nav > a:not(.button):hover,
-.main-nav > a[aria-current="page"] {
+.main-nav>a:not(.button):hover,
+.main-nav>a[aria-current="page"] {
   background: rgba(0, 118, 221, 0.07);
   color: var(--blue);
 }
@@ -372,7 +372,7 @@ a {
 .card {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--green);
   padding: 28px;
   box-shadow: var(--shadow);
   transition: transform 220ms ease, box-shadow 220ms ease;
@@ -1007,7 +1007,7 @@ a {
     display: flex;
   }
 
-  .main-nav > a:not(.button) {
+  .main-nav>a:not(.button) {
     border-bottom: 1px solid rgba(14, 35, 55, 0.08);
     border-radius: 0;
     padding: 15px 5px;
