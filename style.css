@@ -101,7 +101,7 @@ a {
 }
 
 .container {
-  width: min(1280px, calc(100% - 30px));
+  width: min(1280px, calc(100% - 50px));
   margin-inline: auto;
 }
 
