@@ -372,7 +372,7 @@ a {
 .card {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--green);
+  background: var(--white);
   padding: 28px;
   box-shadow: var(--shadow);
   transition: transform 220ms ease, box-shadow 220ms ease;

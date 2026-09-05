@@ -223,9 +223,14 @@
         <div class="crm-slot">
           <div id="sol-amigo-formulario" class="sol-amigo-widget" aria-label="Formulário de simulação de energia solar">
           </div>
+          <!-- 1. Bloco onde o formulário será incorporado na página -->
+          <div id="sol-amigo-formulario"></div>
+
+          <!-- 2. Script para ativar o formulário e o botão flutuante juntos -->
           <script async src="https://lealt97.github.io/sol-amigo-pro/widget.js"
-            data-sol-amigo-token="d5395e84-a46a-4745-9dc3-22c5dc764d38" data-mode="inline"
-            data-target="#sol-amigo-formulario"></script>
+            data-sol-amigo-token="d5395e84-a46a-4745-9dc3-22c5dc764d38" data-mode="both"
+            data-target="#sol-amigo-formulario" data-button-label="fazer orçamento"
+            data-floating-logo-url="https://tmdhmthlnfotfezxgxlt.supabase.co/storage/v1/object/public/account-assets/71eed5d3-edf6-4652-adb4-29699cd7d6f4/logos/dark-3?v=1788125808906"></script>
           <noscript>Ative o JavaScript para solicitar sua simulação de energia solar.</noscript>
         </div>
       </div>
