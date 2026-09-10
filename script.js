@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupRatings();
   setupMobileMenu();
   setupCarousels();
-  setupTestimonialSliders();
+  setupFeedbackAnimations();
   updateYear();
 });
 
@@ -155,178 +155,29 @@ function setupCarousels() {
   });
 }
 
-function setupTestimonialSliders() {
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+function setupFeedbackAnimations() {
+  const grids = document.querySelectorAll("[data-feedback-grid]");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  document.querySelectorAll("[data-testimonials]").forEach((slider) => {
-    const viewport = slider.querySelector(".testimonials-viewport");
-    const track = slider.querySelector(".testimonials-track");
-    const slides = Array.from(slider.querySelectorAll(".testimonial-slide"));
-    const previous = slider.querySelector("[data-testimonial-previous]");
-    const next = slider.querySelector("[data-testimonial-next]");
-    const dotsContainer = slider.querySelector("[data-testimonial-dots]");
-    let currentIndex = 0;
-    let timer;
-    let dragStartX = null;
-    let dragDistance = 0;
-    let resizeFrame;
-    let pointerInside = false;
-    let focusInside = false;
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) return;
 
-    if (!viewport || !track || slides.length === 0) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
 
-    function slidesPerView() {
-      const value = Number.parseInt(getComputedStyle(track).getPropertyValue("--testimonials-per-view"), 10);
-      return Number.isFinite(value) ? value : 1;
-    }
-
-    function lastIndex() {
-      return Math.max(0, slides.length - slidesPerView());
-    }
-
-    function stopTimer() {
-      window.clearInterval(timer);
-    }
-
-    function startTimer() {
-      stopTimer();
-      if (
-        prefersReducedMotion.matches ||
-        lastIndex() === 0 ||
-        document.hidden ||
-        pointerInside ||
-        focusInside ||
-        dragStartX !== null
-      ) return;
-      timer = window.setInterval(() => showSlide(currentIndex + 1, false), 5000);
-    }
-
-    function updateSlideState() {
-      const visibleUntil = currentIndex + slidesPerView();
-      slides.forEach((slide, index) => {
-        const isVisible = index >= currentIndex && index < visibleUntil;
-        slide.setAttribute("role", "group");
-        slide.setAttribute("aria-roledescription", "slide");
-        slide.setAttribute("aria-hidden", String(!isVisible));
-        slide.setAttribute("aria-label", `Depoimento ${index + 1} de ${slides.length}`);
-      });
-    }
-
-    function updateDots() {
-      slider.querySelectorAll(".testimonial-dot").forEach((dot, index) => {
-        const isActive = index === currentIndex;
-        dot.classList.toggle("active", isActive);
-        dot.setAttribute("aria-current", isActive ? "true" : "false");
-      });
-    }
-
-    function translateTrack(distance = 0) {
-      const offset = slides[currentIndex]?.offsetLeft || 0;
-      track.style.transform = `translate3d(${distance - offset}px, 0, 0)`;
-    }
-
-    function showSlide(index, restart = true) {
-      const totalPositions = lastIndex() + 1;
-      currentIndex = (index + totalPositions) % totalPositions;
-      track.classList.remove("dragging");
-      viewport.classList.remove("dragging");
-      translateTrack();
-      updateSlideState();
-      updateDots();
-      if (restart) startTimer();
-    }
-
-    function buildDots() {
-      if (!dotsContainer) return;
-      dotsContainer.replaceChildren();
-      for (let index = 0; index <= lastIndex(); index += 1) {
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "testimonial-dot";
-        dot.setAttribute("aria-label", `Mostrar grupo de depoimentos ${index + 1}`);
-        dot.addEventListener("click", () => showSlide(index));
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    function finishDrag() {
-      if (dragStartX === null) return;
-      const targetIndex = Math.abs(dragDistance) > 48
-        ? currentIndex + (dragDistance < 0 ? 1 : -1)
-        : currentIndex;
-      dragStartX = null;
-      dragDistance = 0;
-      showSlide(targetIndex);
-    }
-
-    previous?.addEventListener("click", () => showSlide(currentIndex - 1));
-    next?.addEventListener("click", () => showSlide(currentIndex + 1));
-
-    viewport.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        showSlide(currentIndex - 1);
-      }
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        showSlide(currentIndex + 1);
-      }
+      const grid = entry.target;
+      grid.classList.add("is-visible");
+      window.setTimeout(() => grid.classList.add("animation-complete"), 1100);
+      observer.unobserve(grid);
     });
+  }, {
+    threshold: 0.2,
+    rootMargin: "0px 0px -8% 0px",
+  });
 
-    viewport.addEventListener("pointerdown", (event) => {
-      if (event.button !== 0) return;
-      dragStartX = event.clientX;
-      dragDistance = 0;
-      stopTimer();
-      viewport.setPointerCapture(event.pointerId);
-      viewport.classList.add("dragging");
-      track.classList.add("dragging");
-    });
-
-    viewport.addEventListener("pointermove", (event) => {
-      if (dragStartX === null) return;
-      dragDistance = event.clientX - dragStartX;
-      translateTrack(dragDistance);
-    });
-
-    viewport.addEventListener("pointerup", finishDrag);
-    viewport.addEventListener("pointercancel", finishDrag);
-    slider.addEventListener("mouseenter", () => {
-      pointerInside = true;
-      stopTimer();
-    });
-    slider.addEventListener("mouseleave", () => {
-      pointerInside = false;
-      startTimer();
-    });
-    slider.addEventListener("focusin", () => {
-      focusInside = true;
-      stopTimer();
-    });
-    slider.addEventListener("focusout", (event) => {
-      if (!slider.contains(event.relatedTarget)) {
-        focusInside = false;
-        startTimer();
-      }
-    });
-
-    window.addEventListener("resize", () => {
-      window.cancelAnimationFrame(resizeFrame);
-      resizeFrame = window.requestAnimationFrame(() => {
-        currentIndex = Math.min(currentIndex, lastIndex());
-        buildDots();
-        showSlide(currentIndex);
-      });
-    });
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) stopTimer();
-      else startTimer();
-    });
-
-    prefersReducedMotion.addEventListener?.("change", startTimer);
-    buildDots();
-    showSlide(0);
+  grids.forEach((grid) => {
+    grid.classList.add("feedback-animate");
+    observer.observe(grid);
   });
 }
 
