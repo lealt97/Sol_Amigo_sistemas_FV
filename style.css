@@ -1067,6 +1067,40 @@ a {
   font-size: 0.71rem;
 }
 
+/* Animações de entrada durante a rolagem */
+.scroll-reveal {
+  --scroll-reveal-x: 0px;
+  --scroll-reveal-y: 30px;
+  --scroll-reveal-scale: 0.985;
+  opacity: 0;
+  transform: translate3d(var(--scroll-reveal-x), var(--scroll-reveal-y), 0) scale(var(--scroll-reveal-scale));
+  transition:
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--scroll-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal--left {
+  --scroll-reveal-x: -46px;
+  --scroll-reveal-y: 0px;
+}
+
+.scroll-reveal--right {
+  --scroll-reveal-x: 46px;
+  --scroll-reveal-y: 0px;
+}
+
+.scroll-reveal--soft {
+  --scroll-reveal-y: 18px;
+  --scroll-reveal-scale: 0.97;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
 @media (max-width: 980px) {
   .main-nav {
     position: fixed;
@@ -1162,6 +1196,14 @@ a {
     align-items: flex-start;
     flex-direction: column;
   }
+
+  .scroll-reveal--left {
+    --scroll-reveal-x: -30px;
+  }
+
+  .scroll-reveal--right {
+    --scroll-reveal-x: 30px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1234,5 +1276,11 @@ a {
 
   .testimonial-marquee [data-feedback-clone] {
     display: none;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
