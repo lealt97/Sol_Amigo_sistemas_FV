@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupRatings();
   setupMobileMenu();
   setupCarousels();
-  setupFeedbackAnimations();
+  setupFeedbackMarquees();
   updateYear();
 });
 
@@ -155,29 +155,31 @@ function setupCarousels() {
   });
 }
 
-function setupFeedbackAnimations() {
-  const grids = document.querySelectorAll("[data-feedback-grid]");
+function setupFeedbackMarquees() {
+  const marquees = document.querySelectorAll("[data-feedback-marquee]");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (prefersReducedMotion || !("IntersectionObserver" in window)) return;
+  marquees.forEach((marquee) => {
+    const track = marquee.querySelector(".testimonial-grid");
+    const cards = Array.from(track?.children || []);
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-
-      const grid = entry.target;
-      grid.classList.add("is-visible");
-      window.setTimeout(() => grid.classList.add("animation-complete"), 1100);
-      observer.unobserve(grid);
+    cards.forEach((card, index) => {
+      card.setAttribute("role", "group");
+      card.setAttribute("aria-label", `Depoimento ${index + 1} de ${cards.length}`);
     });
-  }, {
-    threshold: 0.2,
-    rootMargin: "0px 0px -8% 0px",
-  });
 
-  grids.forEach((grid) => {
-    grid.classList.add("feedback-animate");
-    observer.observe(grid);
+    if (!track || cards.length === 0 || prefersReducedMotion) return;
+
+    cards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      clone.removeAttribute("aria-label");
+      clone.dataset.feedbackClone = "";
+      clone.querySelectorAll("[id]").forEach((element) => element.removeAttribute("id"));
+      track.appendChild(clone);
+    });
+
+    marquee.classList.add("is-ready");
   });
 }
 
